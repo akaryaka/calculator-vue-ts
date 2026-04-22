@@ -1,19 +1,6 @@
-<script lang="ts">
-  export default {
-    data() {
-      return {
-        btnValue: ''
-      }
-    },
-    methods: {
-      btnClick(event: MouseEvent) {
-        const target = event.target;
-        if (target instanceof HTMLInputElement && target.classList.contains('btn_number')) { 
-          this.btnValue += target.value
-        }
-      }
-    }
-  }
+<script lang="ts" setup>
+  import { btnValue } from '../constants';
+  import { btnClick } from '../composables/calculator';
 </script>
 
 <template>
@@ -53,7 +40,7 @@
 </template>
 
 <style lang="scss">
-  .wrapper{
+  .wrapper {
     width: 100%;
     text-align: center;
     display: flex;
@@ -62,41 +49,40 @@
     flex-direction: column;
   }
 
-  .title{
+  .title {
     margin-bottom: 30px;
   }
 
-  .calc{
+  .calc {
     width: 450px;
     background-color: #000;
     padding: 35px;
     border-radius: 30px;
     display: grid;
-    &__main{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
-  }
-  &__header{
-    width: 100%;
-    height: 50px;
-    margin-bottom: 50px;
-    display: flex;
-    justify-content: space-between;
-
-    &__input{
-      width: 100%;
-      margin-right: 20px;
-      background: transparent;
-      color:#fff;
-      font-size: 40px;
-      line-height: 120%;
-      border: none;
-      text-align: left;
+    &__main {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      grid-column-gap: 5px;
+      grid-row-gap: 5px;
     }
-  }
+    &__header {
+      width: 100%;
+      height: 50px;
+      margin-bottom: 50px;
+      display: flex;
+      justify-content: space-between;
+      &__input {
+        width: 100%;
+        margin-right: 20px;
+        background: transparent;
+        color:#fff;
+        font-size: 40px;
+        line-height: 120%;
+        border: none;
+        text-align: left;
+      }
+    }
   }
 
   .btn{
@@ -114,27 +100,27 @@
       transition: all .3s;
     }
     &_number, 
-    &_dot{
+    &_dot {
       background-color: #505050;
       color: #fff;
     }
-    &_command{
+    &_command {
       background-color: #C8C8C8;
     }
-    &_operator{
+    &_operator {
       background-color: orange;
       color: #fff;
-      &[disabled="disabled"]{
+      &[disabled="disabled"] {
         opacity: 0.5;
       }
     }
   }
 
-  #btn_zeroing{
+  #btn_zeroing {
     grid-area: 1/1/2/3;
   }
 
-  #btn_equal{
+  #btn_equal {
     grid-area: 5/3/6/5;
   }
 </style>

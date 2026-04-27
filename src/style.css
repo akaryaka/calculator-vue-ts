@@ -9,3 +9,6 @@ body {
   padding: 30px;
 }
 
+.btn-disabled {
+    opacity: 0.5;
+}

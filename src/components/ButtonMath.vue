@@ -1,12 +1,9 @@
 <template>
-    <input @click="clickMath" type="button" class="btn btn_operator math-action" :class="btnMathClass" :value="value"/>
+    <input @click="clickMath" type="button" class="btn btn_operator math-action" :value="value"/>
 </template>
 
 <script setup lang="ts">
-    import { btnValue, mathAction, mathValue1, mathValue2 } from '../constants';
-    import { ref } from 'vue';
-
-    const btnMathClass = ref('');
+    import { btnValue, mathAction, mathOutput, mathValue1 } from '../constants';
     
     defineProps({
         value: String
@@ -14,18 +11,19 @@
 
     function clickMath(event: MouseEvent) {
         const target: any = event.target;
-        target.disabled = true;
-        btnMathClass.value = 'btn-disabled';
+        const btnActions = document.querySelectorAll('.math-action');
         mathAction.value = target.value;
         mathValue1.value = btnValue.value;
         btnValue.value = '';
+        mathOutput.value += `${mathValue1.value}${mathAction.value}`; 
+        
+        btnActions.forEach(function(btnAction) {
+            btnAction.classList.add('btn-disabled');
+            btnAction.setAttribute('disabled', 'true');
+        });
     }
-
-
 </script>
 
 <style lang="scss" scoped>
-    .btn-disabled {
-        opacity: 0.5;
-    }
+
 </style>

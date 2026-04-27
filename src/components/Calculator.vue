@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { btnValue } from '../constants';
+  import { btnValue, mathOutput } from '../constants';
   import { btnClick } from '../composables/calculator';
   import ButtonMath from './ButtonMath.vue';
   import ButtonEqual from './ButtonEqual.vue';
@@ -11,15 +11,15 @@
     <div class="wrapper">
       <h1 class="title">Калькулятор</h1>
       <div class="calc">
-        <div class="output"></div>
+        <div class="output">{{ mathOutput }}</div>
         <header class="calc__header">
           <div class="calc__header__input">{{ btnValue }}</div>
           <button class="btn delete" id="btn_delete">Удалить</button>
         </header>
-         <div class="calc__main">
+         <form action="#" class="calc__main">
           <ButtonZero />
           <input @click="btnClick" type="button" class="btn btn_command math-action" value="%" id="btn_percent" />
-          <input @click="btnClick" type="button" class="btn btn_operator math-action" value="/" />
+          <ButtonMath value="/"/>
           <input @click="btnClick" type="button" class="btn btn_number" value="7" />
           <input @click="btnClick" type="button" class="btn btn_number" value="8" />
           <input @click="btnClick" type="button" class="btn btn_number" value="9" />
@@ -27,18 +27,17 @@
           <input @click="btnClick" type="button" class="btn btn_number" value="4" />
           <input @click="btnClick" type="button" class="btn btn_number" value="5" />
           <input @click="btnClick" type="button" class="btn btn_number" value="6" />
-          <input @click="btnClick" type="button" class="btn btn_operator math-action" value="-" />
+          <ButtonMath value="-"/>
           <input @click="btnClick" type="button" class="btn btn_number" value="1" />
           <input @click="btnClick" type="button" class="btn btn_number" value="2" />
           <input @click="btnClick" type="button" class="btn btn_number" value="3" />
-          <input @click="btnClick" type="button" class="btn btn_operator math-action" value="+" />
+          <ButtonMath value="+"/>
           <input @click="btnClick" type="button" class="btn btn_number" value="0" id="btn_zero" />
           <input @click="btnClick" type="button" class="btn btn_dot btn_number" value="." id="btn_comma" />
           <ButtonEqual />
-        </div>
+        </form>
       </div>
     </div>
-   
   </div>
 </template>
 
@@ -125,5 +124,9 @@
 
   #btn_equal {
     grid-area: 5/3/6/5;
+  }
+
+  .output {
+    color: #fff;
   }
 </style>

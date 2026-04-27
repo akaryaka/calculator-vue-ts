@@ -1,6 +1,9 @@
 <script lang="ts" setup>
   import { btnValue } from '../constants';
   import { btnClick } from '../composables/calculator';
+  import ButtonMath from './ButtonMath.vue';
+  import ButtonEqual from './ButtonEqual.vue';
+  import ButtonZero from './ButtonZero.vue';
 </script>
 
 <template>
@@ -14,13 +17,13 @@
           <button class="btn delete" id="btn_delete">Удалить</button>
         </header>
          <div class="calc__main">
-          <input @click="btnClick" type="button" class="btn btn_command" value="C" id="btn_zeroing" />
+          <ButtonZero />
           <input @click="btnClick" type="button" class="btn btn_command math-action" value="%" id="btn_percent" />
           <input @click="btnClick" type="button" class="btn btn_operator math-action" value="/" />
           <input @click="btnClick" type="button" class="btn btn_number" value="7" />
           <input @click="btnClick" type="button" class="btn btn_number" value="8" />
           <input @click="btnClick" type="button" class="btn btn_number" value="9" />
-          <input @click="btnClick" type="button" class="btn btn_operator math-action" value="*" />
+          <ButtonMath value="*"/>
           <input @click="btnClick" type="button" class="btn btn_number" value="4" />
           <input @click="btnClick" type="button" class="btn btn_number" value="5" />
           <input @click="btnClick" type="button" class="btn btn_number" value="6" />
@@ -31,7 +34,7 @@
           <input @click="btnClick" type="button" class="btn btn_operator math-action" value="+" />
           <input @click="btnClick" type="button" class="btn btn_number" value="0" id="btn_zero" />
           <input @click="btnClick" type="button" class="btn btn_dot btn_number" value="." id="btn_comma" />
-          <input @click="btnClick" type="button" class="btn btn_operator equal" value="=" id="btn_equal" />
+          <ButtonEqual />
         </div>
       </div>
     </div>
@@ -73,8 +76,8 @@
       display: flex;
       justify-content: space-between;
       &__input {
-        width: 100%;
-        margin-right: 20px;
+        width: 100px;
+        padding: 0 10px;
         background: transparent;
         color:#fff;
         font-size: 40px;

@@ -21,5 +21,10 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .btn {
+    &_operator {
+      background-color: orange;
+      color: #fff;
+    }
+  }
 </style>

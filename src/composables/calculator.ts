@@ -11,8 +11,6 @@ export function btnClick(target: EventTarget | null) {
       }
     }
   }
-  // const target = event.target;
-
 }
 
 export function calculate(a: any, b: any, operator: any) {
@@ -40,6 +38,8 @@ export function btnEqual() {
     btnNumber.classList.add('btn-disabled');
     btnNumber.setAttribute('disabled', 'true');
   });
+
+  btnValue.value = '';
 
   mathOutput.value += `${mathValue2.value}=${calculate(Number(mathValue1.value), Number(mathValue2.value), mathAction.value)}`;
 }

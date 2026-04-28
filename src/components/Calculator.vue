@@ -1,9 +1,10 @@
 <script lang="ts" setup>
   import { btnValue, mathOutput } from '../constants';
-  import { btnClick } from '../composables/calculator';
+  import { removeNumber } from '../composables/calculator';
   import ButtonMath from './ButtonMath.vue';
   import ButtonEqual from './ButtonEqual.vue';
   import ButtonZero from './ButtonZero.vue';
+  import ButtonNumber from './ButtonNumber.vue';
 </script>
 
 <template>
@@ -14,26 +15,26 @@
         <div class="output">{{ mathOutput }}</div>
         <header class="calc__header">
           <div class="calc__header__input">{{ btnValue }}</div>
-          <button class="btn delete" id="btn_delete">Удалить</button>
+          <button v-if="btnValue" @click="removeNumber" class="btn delete">Удалить</button>
         </header>
          <form action="#" class="calc__main">
           <ButtonZero />
-          <input @click="btnClick" type="button" class="btn btn_command math-action" value="%" id="btn_percent" />
+          <ButtonMath value="%" />
           <ButtonMath value="/"/>
-          <input @click="btnClick" type="button" class="btn btn_number" value="7" />
-          <input @click="btnClick" type="button" class="btn btn_number" value="8" />
-          <input @click="btnClick" type="button" class="btn btn_number" value="9" />
+          <ButtonNumber value="7"/>
+          <ButtonNumber value="8"/>
+          <ButtonNumber value="9"/>
           <ButtonMath value="*"/>
-          <input @click="btnClick" type="button" class="btn btn_number" value="4" />
-          <input @click="btnClick" type="button" class="btn btn_number" value="5" />
-          <input @click="btnClick" type="button" class="btn btn_number" value="6" />
+          <ButtonNumber value="4"/>
+          <ButtonNumber value="5"/>
+          <ButtonNumber value="6"/>
           <ButtonMath value="-"/>
-          <input @click="btnClick" type="button" class="btn btn_number" value="1" />
-          <input @click="btnClick" type="button" class="btn btn_number" value="2" />
-          <input @click="btnClick" type="button" class="btn btn_number" value="3" />
+          <ButtonNumber value="1"/>
+          <ButtonNumber value="2"/>
+          <ButtonNumber value="3"/>
           <ButtonMath value="+"/>
-          <input @click="btnClick" type="button" class="btn btn_number" value="0" id="btn_zero" />
-          <input @click="btnClick" type="button" class="btn btn_dot btn_number" value="." id="btn_comma" />
+          <ButtonNumber value="0"/>
+          <ButtonNumber value="."/>
           <ButtonEqual />
         </form>
       </div>
@@ -98,7 +99,6 @@
       cursor: pointer;
       padding: 10px;
       font-size: 20px;
-      opacity: 0;
       transition: all .3s;
     }
     &_number, 

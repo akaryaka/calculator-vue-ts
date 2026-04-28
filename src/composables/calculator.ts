@@ -1,4 +1,4 @@
-import { btnValue } from "../constants";
+import { btnValue, mathValue1, mathValue2, mathEqual, mathOutput, mathAction } from "../constants";
 
 export function btnClick(event: MouseEvent) {
   const target = event.target;
@@ -15,4 +15,60 @@ export function calculate(a: any, b: any, operator: any) {
     case '/': return b !== 0 ? a / b : 'Деление на ноль';
     default: return 'Ошибка';
   }
+}
+
+export function btnEqual() {
+  const btnNumbers = document.querySelectorAll('.btn_number');
+
+  mathValue2.value = btnValue.value;
+  if (mathValue2.value.trim() != '') {
+    mathEqual.value = Number(mathValue1.value) * Number(mathValue2.value);
+    btnValue.value = calculate(Number(mathValue1.value), Number(mathValue2.value), mathAction.value);
+  } else {
+    alert('Пусто!');
+  }
+
+  btnNumbers.forEach(function (btnNumber) {
+    btnNumber.classList.add('btn-disabled');
+    btnNumber.setAttribute('disabled', 'true');
+  });
+
+  mathOutput.value += `${mathValue2.value}=${calculate(Number(mathValue1.value), Number(mathValue2.value), mathAction.value)}`;
+}
+
+export function clickMath(event: MouseEvent) {
+  const target: any = event.target;
+  const btnActions = document.querySelectorAll('.math-action');
+  mathAction.value = target.value;
+  mathValue1.value = btnValue.value;
+  btnValue.value = '';
+  mathOutput.value += `${mathValue1.value}${mathAction.value}`;
+
+  btnActions.forEach(function (btnAction) {
+    btnAction.classList.add('btn-disabled');
+    btnAction.setAttribute('disabled', 'true');
+  });
+}
+
+export function clickZero() {
+  const btnActions = document.querySelectorAll('.math-action');
+  const btnNumbers = document.querySelectorAll('.btn_number');
+
+  btnValue.value = '';
+  mathValue1.value = '';
+  mathValue2.value = '';
+
+  btnActions.forEach(function (btnAction) {
+    btnAction.classList.remove('btn-disabled');
+    btnAction.removeAttribute('disabled');
+  });
+  btnNumbers.forEach(function (btnNumber) {
+    btnNumber.classList.remove('btn-disabled');
+    btnNumber.removeAttribute('disabled');
+  });
+  mathOutput.value = ''
+}
+
+export function removeNumber() {
+  btnValue.value = btnValue.value.slice(0, btnValue.value.length - 1);
 }

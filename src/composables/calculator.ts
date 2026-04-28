@@ -3,7 +3,11 @@ import { btnValue, mathValue1, mathValue2, mathEqual, mathOutput, mathAction } f
 export function btnClick(event: MouseEvent) {
   const target = event.target;
   if (target instanceof HTMLInputElement && target.classList.contains('btn_number')) {
-    btnValue.value += target.value
+    if (btnValue.value == '0') {
+      btnValue.value = target.value;
+    } else {
+      btnValue.value += target.value;
+    }
   }
 }
 

@@ -40,10 +40,14 @@ export function btnEqual() {
   mathOutput.value += `${mathValue2.value}=${calculate(Number(mathValue1.value), Number(mathValue2.value), mathAction.value)}`;
 }
 
-export function clickMath(event: MouseEvent) {
-  const target: any = event.target;
+export function clickMath(target: EventTarget | null) {
+   if (target && 'value' in target) {
+    const val = (target as HTMLInputElement).value
+    console.log('Значение кнопки:', val) // "/"
+
+      // const target: any = event.target;
   const btnActions = document.querySelectorAll('.math-action');
-  mathAction.value = target.value;
+  mathAction.value = val;
   mathValue1.value = btnValue.value;
   btnValue.value = '';
   mathOutput.value += `${mathValue1.value}${mathAction.value}`;
@@ -52,6 +56,8 @@ export function clickMath(event: MouseEvent) {
     btnAction.classList.add('btn-disabled');
     btnAction.setAttribute('disabled', 'true');
   });
+  }
+
 }
 
 export function clickZero() {

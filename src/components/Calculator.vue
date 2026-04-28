@@ -1,10 +1,11 @@
 <script lang="ts" setup>
   import { btnValue, mathOutput } from '../constants';
-  import { removeNumber } from '../composables/calculator';
+  import { clickMath, removeNumber } from '../composables/calculator';
   import ButtonMath from './ButtonMath.vue';
   import ButtonEqual from './ButtonEqual.vue';
   import ButtonZero from './ButtonZero.vue';
   import ButtonNumber from './ButtonNumber.vue';
+  import Button from './Button.vue';
 </script>
 
 <template>
@@ -20,19 +21,19 @@
          <form action="#" class="calc__main">
           <ButtonZero />
           <ButtonMath value="%" />
-          <ButtonMath value="/"/>
+          <Button @click="clickMath" class="math-action" value="/" />
           <ButtonNumber value="7"/>
           <ButtonNumber value="8"/>
           <ButtonNumber value="9"/>
-          <ButtonMath value="*"/>
+          <Button @click="clickMath" class="math-action" value="*" />
           <ButtonNumber value="4"/>
           <ButtonNumber value="5"/>
           <ButtonNumber value="6"/>
-          <ButtonMath value="-"/>
+          <Button @click="clickMath" class="math-action" value="-" />
           <ButtonNumber value="1"/>
           <ButtonNumber value="2"/>
           <ButtonNumber value="3"/>
-          <ButtonMath value="+"/>
+          <Button @click="clickMath" class="math-action" value="+" />
           <ButtonNumber value="0"/>
           <ButtonNumber value="."/>
           <ButtonEqual />

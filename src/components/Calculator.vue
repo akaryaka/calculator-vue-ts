@@ -1,8 +1,7 @@
 <script lang="ts" setup>
   import { btnValue, mathOutput } from '../constants';
-  import { clickMath, clickZero, removeNumber } from '../composables/calculator';
+  import { btnClick, clickMath, clickZero, removeNumber } from '../composables/calculator';
   import ButtonEqual from './ButtonEqual.vue';
-  import ButtonNumber from './ButtonNumber.vue';
   import Button from './Button.vue';
 </script>
 
@@ -17,24 +16,23 @@
           <button v-if="btnValue" @click="removeNumber" class="btn delete">Удалить</button>
         </header>
          <form action="#" class="calc__main">
-          <!-- изменить цвет -->
           <Button @click="clickZero" class="btn_command" id="btn_zeroing" value="C"/>
-          <Button @click="clickMath" class="math-action" value="%" />
+          <Button @click="clickMath" class="math-action" id="btn_percent" value="%" />
           <Button @click="clickMath" class="math-action" value="/" />
-          <ButtonNumber value="7"/>
-          <ButtonNumber value="8"/>
-          <ButtonNumber value="9"/>
+          <Button @click="btnClick" class="btn_number" value="7" />
+          <Button @click="btnClick" class="btn_number" value="8" />
+          <Button @click="btnClick" class="btn_number" value="9" />
           <Button @click="clickMath" class="math-action" value="*" />
-          <ButtonNumber value="4"/>
-          <ButtonNumber value="5"/>
-          <ButtonNumber value="6"/>
+          <Button @click="btnClick" class="btn_number" value="4" />
+          <Button @click="btnClick" class="btn_number" value="5" />
+          <Button @click="btnClick" class="btn_number" value="6" />
           <Button @click="clickMath" class="math-action" value="-" />
-          <ButtonNumber value="1"/>
-          <ButtonNumber value="2"/>
-          <ButtonNumber value="3"/>
+          <Button @click="btnClick" class="btn_number" value="1" />
+          <Button @click="btnClick" class="btn_number" value="2" />
+          <Button @click="btnClick" class="btn_number" value="3" />
           <Button @click="clickMath" class="math-action" value="+" />
-          <ButtonNumber value="0"/>
-          <ButtonNumber value="."/>
+          <Button @click="btnClick" class="btn_number" value="0" />
+          <Button @click="btnClick" class="btn_number" value="." />
           <ButtonEqual />
         </form>
       </div>
@@ -106,9 +104,6 @@
       background-color: #505050;
       color: #fff;
     }
-    &_command {
-      background-color: #C8C8C8;
-    }
     &_operator {
       background-color: orange;
       color: #fff;
@@ -116,6 +111,17 @@
         opacity: 0.5;
       }
     }
+  }
+
+  .btn.btn_command,
+  #btn_percent {
+    background-color: #C8C8C8;
+    color: #000;
+  }
+
+  .btn.btn_number {
+    background-color: #505050;
+    color: #fff;
   }
 
   #btn_zeroing {

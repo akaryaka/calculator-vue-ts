@@ -1,14 +1,18 @@
 import { btnValue, mathValue1, mathValue2, mathEqual, mathOutput, mathAction } from "../constants";
 
-export function btnClick(event: MouseEvent) {
-  const target = event.target;
-  if (target instanceof HTMLInputElement && target.classList.contains('btn_number')) {
-    if (btnValue.value == '0') {
-      btnValue.value = target.value;
-    } else {
-      btnValue.value += target.value;
+export function btnClick(target: EventTarget | null) {
+  if (target && 'value' in target) {
+    const val = (target as HTMLInputElement).value
+    if (target instanceof HTMLInputElement && target.classList.contains('btn_number')) {
+      if (btnValue.value == '0') {
+        btnValue.value = val;
+      } else {
+        btnValue.value += val;
+      }
     }
   }
+  // const target = event.target;
+
 }
 
 export function calculate(a: any, b: any, operator: any) {
@@ -41,21 +45,21 @@ export function btnEqual() {
 }
 
 export function clickMath(target: EventTarget | null) {
-   if (target && 'value' in target) {
+  // переделать? нашел решение в qwen
+  
+  if (target && 'value' in target) {
     const val = (target as HTMLInputElement).value
-    console.log('Значение кнопки:', val) // "/"
 
-      // const target: any = event.target;
-  const btnActions = document.querySelectorAll('.math-action');
-  mathAction.value = val;
-  mathValue1.value = btnValue.value;
-  btnValue.value = '';
-  mathOutput.value += `${mathValue1.value}${mathAction.value}`;
+    const btnActions = document.querySelectorAll('.math-action');
+    mathAction.value = val;
+    mathValue1.value = btnValue.value;
+    btnValue.value = '';
+    mathOutput.value += `${mathValue1.value}${mathAction.value}`;
 
-  btnActions.forEach(function (btnAction) {
-    btnAction.classList.add('btn-disabled');
-    btnAction.setAttribute('disabled', 'true');
-  });
+    btnActions.forEach(function (btnAction) {
+      btnAction.classList.add('btn-disabled');
+      btnAction.setAttribute('disabled', 'true');
+    });
   }
 
 }

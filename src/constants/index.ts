@@ -6,4 +6,3 @@ export const mathValue1 = ref('');
 export const mathValue2 = ref('');
 export const mathEqual = ref(0);
 export const mathOutput = ref('');
-// export const 

@@ -40,22 +40,19 @@ export function btnEqual() {
   });
 
   btnValue.value = '';
-
   mathOutput.value += `${mathValue2.value}=${calculate(Number(mathValue1.value), Number(mathValue2.value), mathAction.value)}`;
 }
 
 export function clickMath(target: EventTarget | null) {
   // переделать? нашел решение в qwen
-  
   if (target && 'value' in target) {
     const val = (target as HTMLInputElement).value
-
     const btnActions = document.querySelectorAll('.math-action');
+
     mathAction.value = val;
     mathValue1.value = btnValue.value;
     btnValue.value = '';
     mathOutput.value += `${mathValue1.value}${mathAction.value}`;
-
     btnActions.forEach(function (btnAction) {
       btnAction.classList.add('btn-disabled');
       btnAction.setAttribute('disabled', 'true');
@@ -71,7 +68,6 @@ export function clickZero() {
   btnValue.value = '';
   mathValue1.value = '';
   mathValue2.value = '';
-
   btnActions.forEach(function (btnAction) {
     btnAction.classList.remove('btn-disabled');
     btnAction.removeAttribute('disabled');

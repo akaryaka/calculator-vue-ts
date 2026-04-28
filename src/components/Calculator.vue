@@ -75,5 +75,6 @@
 
   .output {
     color: #fff;
+    font-size: 23px;
   }
 </style>

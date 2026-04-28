@@ -1,9 +1,7 @@
 <script lang="ts" setup>
   import { btnValue, mathOutput } from '../constants';
-  import { clickMath, removeNumber } from '../composables/calculator';
-  import ButtonMath from './ButtonMath.vue';
+  import { clickMath, clickZero, removeNumber } from '../composables/calculator';
   import ButtonEqual from './ButtonEqual.vue';
-  import ButtonZero from './ButtonZero.vue';
   import ButtonNumber from './ButtonNumber.vue';
   import Button from './Button.vue';
 </script>
@@ -19,8 +17,9 @@
           <button v-if="btnValue" @click="removeNumber" class="btn delete">Удалить</button>
         </header>
          <form action="#" class="calc__main">
-          <ButtonZero />
-          <ButtonMath value="%" />
+          <!-- изменить цвет -->
+          <Button @click="clickZero" class="btn_command" id="btn_zeroing" value="C"/>
+          <Button @click="clickMath" class="math-action" value="%" />
           <Button @click="clickMath" class="math-action" value="/" />
           <ButtonNumber value="7"/>
           <ButtonNumber value="8"/>

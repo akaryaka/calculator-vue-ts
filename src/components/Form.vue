@@ -1,7 +1,7 @@
 <template>
   <form action="#" class="calc__main">
     <Button @click="clickZero" class="btn_command" id="btn_zeroing" value="C"/>
-    <Button @click="clickMath" class="math-action" id="btn_percent" value="%" />
+    <Button @click="clickMath" class="math-action" id="btn_percent" :disabled=!btnValue value="%" />
     <Button @click="clickMath" class="math-action" value="/" />
     <Button @click="btnClick" class="btn_number" value="7" />
     <Button @click="btnClick" class="btn_number" value="8" />
@@ -24,6 +24,7 @@
 <script setup lang="ts">
   import Button from './Button.vue';
   import { btnClick, clickMath, clickZero, btnEqual } from '../composables/calculator';
+import { btnValue } from '../constants';
 </script>
 
 <style lang="scss" scoped>

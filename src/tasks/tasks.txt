@@ -1,5 +1,5 @@
 debug
-- если btnValue пустой - добавлять класс "btn-disabled" и атрибут disabled
+- если btnValue пустой - добавлять класс "btn-disabled"
 
 tasks
 - "%"(изначально disabled, активировать после сохранения 2 переменной; после клика снова disabled)

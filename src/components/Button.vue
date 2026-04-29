@@ -1,5 +1,5 @@
 <template>
-  <input @click="sendTarget" type="button" class="btn btn_operator" :class="btnClass" :value="value" :id="btnId"/>
+  <input @click="sendTarget" type="button" class="btn btn_operator" :disabled="disabled" :class="btnClass" :value="value" :id="btnId"/>
 </template>
 
 <script setup lang="ts">
@@ -11,7 +11,8 @@
   defineProps({
     value: String,
     btnClass: String,
-    btnId: String
+    btnId: String,
+    disabled: Boolean
   })
 
   function sendTarget(event: MouseEvent) {
